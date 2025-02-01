@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
     heading: {
         marginVertical: 10,
         marginHorizontal: 20,
-        fontSize: 25,
+        fontSize: 20,
         fontWeight: 'bold',
         color: 'black',
     },

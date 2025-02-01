@@ -12,6 +12,7 @@ import Total_Rounds from "../screens/Total_Rounds";
 import Profile from "../screens/Profile";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Home from "../screens/Home";
+import Movies from "../screens/Movies";
 
 const ProfileStack = createNativeStackNavigator();
 
@@ -40,20 +41,21 @@ const Tab = createBottomTabNavigator();
 
 function HomeStackScreen() {
   return (
-    <Tab.Navigator
-      screenOptions={({ route }) => ({
-        tabBarIcon: ({ route}) => {
-          if (route.name == 'Home') {
-            return <Image 
-              source={require('../images/home_nav.png')}
-            />
-            
-          }
-        }
-      })} initialRouteName="Home">
+    <Tab.Navigator screenOptions={{ headerShown: false }}
+      // screenOptions={({ route }) => ({
+      //   tabBarIcon: () => {
+      //     if (route.name == 'Home') {
+      //       return <Image
+      //         source={require('../images/home_nav.png')}
+      //       />
+      //     }
+      //   }
+      // })}
+       initialRouteName="Home">
       <Tab.Screen name="Home" component={HomeStackLinkScreen} />
       <Tab.Screen name="History" component={History} />
       <Tab.Screen name="Profile" component={ProfileStackScreen} />
+      <Tab.Screen name="Movies" component={Movies} />
     </Tab.Navigator>
   )
 }

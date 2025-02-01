@@ -47,6 +47,6 @@ const styles = StyleSheet.create({
         gap: 20
     },
     innerText: {
-        fontSize: 25
+        fontSize: 20
     }
 })
