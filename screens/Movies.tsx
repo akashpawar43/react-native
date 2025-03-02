@@ -2,8 +2,10 @@ import { ScrollView, StyleSheet, Text, View } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Header from '../components/Header';
-import { NavigationProp } from '@react-navigation/native';
+import { NavigationProp, useNavigation } from '@react-navigation/native';
 import List from '../components/List';
+import { BottomTabNavigationProp, BottomTabScreenProps } from '@react-navigation/bottom-tabs'
+import { RootTabParams } from '../src/App';
 
 interface Movie {
     title: string;
@@ -18,7 +20,10 @@ type HistoryProp = {
     navigation: NavigationProp<any, any>
 }
 
-const Movies = ({ navigation }: HistoryProp) => {
+type MoviesProps = BottomTabScreenProps<RootTabParams, 'Movies'>
+
+const Movies = ({ route, navigation }: MoviesProps) => {
+    // const Movies = ({ navigation }: HistoryProp) => {
     const [data, setaData] = useState<MovieResponse | null>(null);
     const getData = async () => {
         const res = await fetch('https://reactnative.dev/movies.json');
@@ -29,9 +34,11 @@ const Movies = ({ navigation }: HistoryProp) => {
     useEffect(() => {
         getData();
     }, []);
+    // const { name } = route.params
+    // const navigation = useNavigation<BottomTabNavigationProp<RootTabParams>>()
     return (
         <SafeAreaView>
-            <Header title='Movies' src='history' navigation={navigation} />
+            <Header title={`Movies ${route.params?.name}`} src='history' navigation={navigation} />
             <ScrollView contentContainerStyle={styles.scrollViewContent}>
                 <View>
                     <Text style={styles.heading}>Movies</Text>

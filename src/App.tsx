@@ -1,7 +1,7 @@
 import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { Text, SafeAreaView, ScrollView, StyleSheet, Image } from 'react-native';
+import { Text, SafeAreaView, ScrollView, StyleSheet, Image, View } from 'react-native';
 
 // screens
 import Login from "../screens/Login";
@@ -37,7 +37,14 @@ function HomeStackLinkScreen() {
   )
 }
 
-const Tab = createBottomTabNavigator();
+export type RootTabParams = {
+  Home: undefined,
+  History: undefined,
+  Profile: undefined,
+  Movies: { name: string },
+}
+
+const Tab = createBottomTabNavigator<RootTabParams>();
 
 function HomeStackScreen() {
   return (
@@ -51,7 +58,7 @@ function HomeStackScreen() {
       //     }
       //   }
       // })}
-       initialRouteName="Home">
+      initialRouteName="Home">
       <Tab.Screen name="Home" component={HomeStackLinkScreen} />
       <Tab.Screen name="History" component={History} />
       <Tab.Screen name="Profile" component={ProfileStackScreen} />
